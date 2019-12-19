@@ -19,7 +19,6 @@ public class RemoveTest {
         MyCollectionInterface<SomeType> myCollection = (MyCollectionInterface<SomeType>) myList;
 
         for (SomeType someValue : valuesToBePopulatedWith) {
-            myCollection.add(someValue);
             Boolean myCollectionContainsValue = myCollection.contains(someValue);
             Assert.assertTrue(myCollectionContainsValue);
 
