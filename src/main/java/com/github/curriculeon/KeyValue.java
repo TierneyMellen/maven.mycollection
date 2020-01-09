@@ -1,6 +1,6 @@
 package com.github.curriculeon;
 
-public class KeyValue<KeyType, ValueType> {
+public class    KeyValue<KeyType, ValueType> {
     private KeyType myKey;
     private ValueType myValue;
     public KeyValue(KeyType key, ValueType value) {

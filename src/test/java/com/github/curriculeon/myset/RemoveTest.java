@@ -15,7 +15,7 @@ import java.util.Date;
 public class RemoveTest {
     //given
     private <SomeType> void test(SomeType... valuesToBePopulatedWith) {
-        MyArrayList<SomeType> myList = new MyArrayList<>(valuesToBePopulatedWith);
+        MyArrayList<SomeType> myList = new MyArrayList<>();
         MyCollectionInterface<SomeType> myCollection = (MyCollectionInterface<SomeType>) myList;
 
         for (SomeType someValue : valuesToBePopulatedWith) {
@@ -45,6 +45,6 @@ public class RemoveTest {
 
     @Test
     public void test2() {
-        test(new Date(), new Date(), new Date());
+        test(new Object(), new Object(), new Object());
     }
 }

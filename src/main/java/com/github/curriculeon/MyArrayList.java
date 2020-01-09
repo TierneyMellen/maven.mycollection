@@ -7,47 +7,71 @@ import java.util.List;
 
 
 public class MyArrayList<SomeType> implements MyCollectionInterface<SomeType>{
-    private List<SomeType> myArrayList = new ArrayList<>();
+    private SomeType[] array;
 
     public MyArrayList() {
+        this.array = (SomeType[])new Object[0];
     }
 
     public MyArrayList(SomeType[] valuesToBePopulatedWith) {
-        this.myArrayList.addAll(Arrays.asList(valuesToBePopulatedWith));
+        this.array = valuesToBePopulatedWith;
     }
 
     @Override
     public void add(SomeType objectToAdd) {
-        this.myArrayList.add(objectToAdd);
+        int newLength = this.array.length + 1;
+        SomeType[] newArray = Arrays.copyOf(this.array, newLength);
+        newArray[newArray.length-1] = objectToAdd;
+        this.array = newArray;
     }
 
     @Override
     public void remove(SomeType objectToRemove) {
-        this.myArrayList.remove(objectToRemove);
+        for (int curentIndex = 0; curentIndex < array.length; curentIndex++) {
+            SomeType someObject = array[curentIndex];
+            if (objectToRemove.equals(someObject)){
+                remove(curentIndex);
+            }
+
+        }
     }
 
     @Override
     public void remove(int indexOfObjectToRemove) {
-        this.myArrayList.remove(indexOfObjectToRemove);
+        SomeType[] rightArray = Arrays.copyOfRange(this.array, indexOfObjectToRemove+1, array.length);
+        this.array = Arrays.copyOfRange(this.array, 0, indexOfObjectToRemove); // left side
+
+        //Is there a cleaner way to do this?
+        for (SomeType someType : rightArray) {
+            add(someType);
+        }
     }
 
     @Override
     public SomeType get(int indexOfElement) {
-        return this.myArrayList.get(indexOfElement);
+        return this.array[indexOfElement];
     }
 
     @Override
     public Boolean contains(SomeType objectToCheckFor) {
-        return this.myArrayList.contains(objectToCheckFor);
+
+        for (SomeType someType : array) {
+            if (someType.equals(objectToCheckFor)){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public Integer size() {
-        return this.myArrayList.size();
+        return array.length;
     }
 
     @Override
     public Iterator iterator() {
-        return this.myArrayList.iterator();
+        return null;//this.array.iterator();
     }
+
+
 }

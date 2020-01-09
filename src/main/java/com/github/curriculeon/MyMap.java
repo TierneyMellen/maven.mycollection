@@ -3,21 +3,22 @@ package com.github.curriculeon;
 import java.util.*;
 
 public class MyMap<KeyType, ValueType> implements MyMapInterface<KeyType,ValueType> {
-    private Map<KeyType, ValueType> myMap = new LinkedHashMap<>();
+    private MyArrayList<KeyValue<KeyType, ValueType>> myMap;
 
     public MyMap() {
+        this.myMap = new MyArrayList<>();
     }
 
     public MyMap(List<KeyValue<KeyType, ValueType>> entries) {
-        for (KeyValue<KeyType, ValueType> elem: entries)
-        {
-            this.myMap.put(elem.getKey(),elem.getValue());
+        for (KeyValue<KeyType, ValueType> keyValueToAdd : entries) {
+            this.myMap.add(keyValueToAdd);
         }
     }
 
     @Override
     public void put(KeyType key, ValueType value) {
-       this.myMap.put(key, value);
+       KeyValue<KeyType,ValueType> pairEntry = new KeyValue<>(key, value);
+       myMap.add(pairEntry);
     }
 
     @Override

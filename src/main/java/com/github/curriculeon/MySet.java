@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class MySet<SomeType> implements MyCollectionInterface<SomeType>{
-    private List<SomeType> mySet = new ArrayList<>();
+    private MyArrayList<SomeType> mySet = new MyArrayList<>();
 
     public MySet() {
     }
